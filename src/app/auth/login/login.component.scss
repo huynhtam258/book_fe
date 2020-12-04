@@ -1,0 +1,53 @@
+body{
+    width: 100%;
+    height: 100vh;
+     background-image: url('../../../assets/login.jpg');
+     background-size:cover;
+     
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .formLogin{
+        padding: 10px;
+        //background overlay css
+        box-shadow: inset 0 0 0 2000px rgba(83, 83, 83, 0.56);
+        color: white;
+        height: 45%;
+        width: 25%;
+        border-radius: 20px;
+        text-align: center;
+        // i{
+        //     margin-right: 5px;
+        // }
+        #btn-login{
+            border: unset;
+        }
+        #btn-login:hover{
+        }
+        #btn-login:active{
+            border: none;
+        }
+        h4{
+            margin-bottom: 15px
+        }
+        .rowInput{
+
+            //border: 1px solid white;
+            border:none;
+            width: 100%;
+            margin-left: 2px; 
+        }
+        input::placeholder{
+            color: white;
+        }
+        #inputpass::focus{
+            border-bottom: 1px solid #007bff;
+        }
+       .row1Input{
+            border-bottom: 1px solid white;
+            color: white;
+
+        }
+    }
+}

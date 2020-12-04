@@ -1,0 +1,111 @@
+<section class="sec1 row" *ngIf="book">
+  <div class="image col-md-6">
+     <img class="imgbook" src="{{book.image}}"> 
+  </div>
+  
+
+  <div class="main_info col-md-6" *ngIf="book">
+    <div class="main_info_div">
+      <h2 id="h2BookName">{{book.bookName}}</h2>
+      <div class="row rowInfo">
+          <p class ="pInfoBook col-12" id="pBookAuthor" (click)="getAuthor(book.author)" 
+          style="color:#555555;text-align: center">{{book.author.authorName}}</p>
+      </div>
+      
+      <!-- <div class="row rowInfo">
+        <span class="pInfoBook col-6 colLeft" style="text-align:right">Category:</span>
+        <a (click)="getCategory(book.category)" class="pInfoBook col-6 colRight" id="aCategory" style="text-align:left">{{book.category.categoryName}}</a>
+      </div> -->
+
+      <div class="row rowInfo">
+        <span class="pInfoBook col-6 colLeft" style="text-align:right">Average Star:</span>
+        <p *ngIf="averageRate" class="pInfoBook col-6 colRight"  style="text-align:left">{{averageRate}}</p>
+        <p *ngIf="!averageRate" class="pInfoBook col-6 colRight"  style="text-align:left">0/5</p>
+      </div>
+      
+      <div class="row rowInfo">
+          <span class="pInfoBook col-6 colLeft" style="text-align:right">Lasted review:</span>
+          <p class="pInfoBook col-6 colRight" style="text-align:left">{{book.releaseDate}}</p>
+      </div>
+    </div>
+    <div class="content" [innerHTML]="book.bookContent" style="overflow-y:scroll;overflow-x: unset;"></div>
+  </div>
+
+</section>
+
+<!-- <section class="sec2">
+  
+</section> -->
+
+<section class="commentAdd" *ngIf="book">
+  <form #commentForm="ngForm" (ngSubmit)="onComment(commentForm)">
+    <input type="hidden" name="bookId" #bookId="ngModel" [(ngModel)]="book._id" readonly>
+    <input type="hidden" name="date" [(ngModel)]="date" readonly>
+    <div class="row">
+    </div>
+    <div class="row">
+      <textarea rows="25" cols="5" name="contentcomment" #contentcomment="ngModel" 
+      [(ngModel)]="reviewComment.contentcomment" 
+      placeholder="Enter your comment ..." ></textarea>
+    </div>
+    <div class="row">
+      <div class="col-12"style="padding-right: 0;">
+        <!-- <ngx-stars style="float: right;" [size]="2" (ratingOutput)="onRatingSet($event)" [color]="'#FFFF00'" name="rate" #rate="ngModel"
+        [(ngModel)]="reviewComment.rate" [maxStars]="5" [initialStars]="3"></ngx-stars> -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12" style="padding-right: 0;">
+        <button class="btn btn-primary" #submitBtn name="btnComment" type="submit" 
+          style="color: #fff;
+                  border:none;
+                  cursor: pointer;
+                  border-radius: .215rem;
+                  padding: .429rem 1rem;
+                  font-family: inherit;
+                  box-shadow: none;
+                  float: right;
+                  padding-bottom: 10px;"
+                  [disabled]="commentForm.invalid || !reviewComment.contentcomment || !idUser">Comment
+        </button>
+      </div>
+    </div>
+    
+  </form>
+</section>
+
+<section class="commentShow">
+  <div class="comment row" *ngFor="let item of reviewComments | paginate: { itemsPerPage: 3, currentPage: p };">
+    <div class="avatarComment col-lg-1 col-sm-4">
+      <div class="row" style="margin-bottom: 0;" id="divImage">
+        <img src="assets/guest_logo.jpg">
+      </div>
+      <div class="row" style="margin-bottom: 0;" id="divReName">
+          <p id="pName" class="col-12" style="font-weight: bold;float: left;">{{item.nameReviwer?.username}}</p>
+      </div>
+      <div class="row"style="margin-bottom: 0;">
+        <ngx-stars [color]="'#FFFF00'" [readonly]="true" [maxStars]="5" [initialStars]="item.rate"[size]=""></ngx-stars>
+      </div>
+    </div>
+    <div class="tip contentComment col-lg-8 col-sm-3">
+      <div class="headerComment row" style="margin-bottom: 0;">
+        
+      </div>
+      <div class="text row">
+        <div class="textContent" [innerHTML]="item.contentcomment"></div>
+      </div>
+      <div class="footerComment">
+        <p style="font-size: 12px;font-style: italic;">Date: {{item.date}}</p>
+      </div>
+      <div>
+        <div *ngFor='let content of listChildComment[item._id]'>
+          <span *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong> {{content.contentChild}}</span>
+        </div>
+        <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button (click)="sendComment(item)">Send</button></div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</section>

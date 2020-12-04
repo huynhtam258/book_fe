@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    // height: 100vh;
+    // padding: 0 20px;
+}
+
+.tablet{
+    display: block;
+}
+.mobile{
+    display: none;
+}
+@media all and (max-width:767px){
+    .tablet{
+        display: none !important;
+    }
+    .mobile{
+        display: block;
+        overflow-x: hidden;
+    }
+}
+
+@media (min-width: 800px) {
+    .modal{
+        // width: 88% !important;
+        border-radius: 1% !important;
+        // overflow: auto !important;
+        .modal-dialog{
+            max-width: 100% !important;
+            margin: 0 !important;
+        }
+    }
+}

@@ -1,0 +1,206 @@
+main {
+    // border: solid 1px black;
+    width: 100%;
+    overflow: hidden;
+    padding: 2%;
+    .manageHead{
+      height: 50px;
+      padding: 0 25px;
+      h2{
+        float: left;
+      }
+      .buttons{
+        float: right;
+        button{
+          margin-left: 20px;
+          border: none;
+          height: 45px;
+        }
+      }
+      .search{
+        margin: 0;
+        float: left;
+        i{
+          padding: 14px;
+          border: 1px solid black;
+        }
+        input{
+          width: 160px;
+          height: 43px;
+          border: 1px solid black;
+          border-left: unset;
+          padding: 0 10px;
+        }
+      }
+    }
+    .interviewContent {
+      border: 1px solid black;
+      max-height: 224px;
+      display: flex;
+      float: left;
+      margin: 2%;
+      width: 46%;
+      .imgAuthor {
+        height: 190px;
+        margin: 3% 0;
+        flex: 1;
+      }
+      .authorInfo {
+        flex: 3;
+        text-align: left;
+        padding: 3%;
+        .authorText{
+          height: 80%;
+        }
+        .authorBtn {
+          height: 20%;
+          text-align: right;
+          i{
+            font-size: 30px;
+            color: rgb(58, 58, 58);
+            cursor: pointer;
+          }
+          i + i{
+            margin-left: 15px;
+          }
+          i:nth-child(1):hover{
+            color: #5483ca;
+          }
+          i:nth-child(2):hover{
+            color: #6edb73;
+          }
+          i:nth-child(3):hover{
+            color: #ca5454;
+          }
+        }
+      }
+    }
+  }
+.modal-author{
+  width: 51em;
+}
+// Affect Input
+.group,
+.row {
+  position: relative;
+  margin-bottom: 45px;
+}
+input,
+select {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #757575;
+  margin: 0 !important;
+}
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label,
+select:focus ~ label,
+select:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after,
+select:focus ~ .bar:before,
+select:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight,
+select:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

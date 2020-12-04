@@ -1,0 +1,38 @@
+<section class="sec1 row">
+  <div class="image col-md-6">
+     <img class="imgbook" src="{{author.image}}"> 
+    
+  </div>
+  
+
+  <div class="main_info col-md-6">
+    <div class="main_info_div">
+      <h2 id="h2BookName">{{author.authorName}}</h2>
+      <div class="row rowInfo">
+        <span style="width: 100%; margin: 0;">'{{author.quote}}'</span>
+      </div>
+
+      <div class="row rowInfo">
+        <span class="pInfoBook col-6 colLeft" style="text-align:right">Main category:</span>
+        <a class="pInfoBook col-6 colRight" style="text-align:left">{{author.category}}</a>
+      </div>
+      
+      <div class="row rowInfo">
+          <span class="pInfoBook col-6 colLeft" style="text-align:right">Lasted interview:</span>
+          <p class="pInfoBook col-6 colRight" style="text-align:left">{{author.releaseDate}}</p>
+      </div>
+    </div>
+
+    <div class="row rowInfo">
+      <p class ="pInfoBook col-12" id="pBookAuthor" (click)="getAuthor(author.authorName)" 
+      style="color:#555555;text-align: center">All book</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="content" [innerHTML]="author.interviewContent" style="overflow-y:auto; overflow-x: hidden;"></div>
+
+<!-- <section class="sec2">
+  
+</section> -->

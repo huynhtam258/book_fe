@@ -1,0 +1,95 @@
+<main>
+  <!-- <div class="search">
+    <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchAuthor" 
+      autocomplete="off" placeholder="&#61442;  Start searching">
+  </div> -->
+  <div class="manageHead">
+    <h2>List</h2>
+    <div class="buttons">
+      <div class="search row">
+        <i class="fas fa-search"></i>
+        <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchAuthor" 
+        autocomplete="off" placeholder="Start searching">
+      </div>
+      <button class="btn btn-primary blue" (click)="onCreate(editAuthor)">Create New Author</button>
+    </div>
+  </div>
+  <div class="interviewContent col-md-6 col-12" *ngFor="let item of authors | filter:searchAuthor | paginate: { itemsPerPage: 6, currentPage: p };">
+    <img class="imgAuthor" src='{{item.image}}'>
+    <div class="authorInfo">
+      <div class="authorText">
+        <p>{{item?.authorName}}</p>
+        <p>{{item?.quote}}</p>
+        <p>{{item?.category?.categoryName}}</p>
+      </div>
+      <div class="authorBtn">
+        <i class="fas fa-pencil-alt" (click)="onEdit(item, editAuthor)"></i>
+        <i class="fas fa-trash" (click)="onDelete(item._id)"></i>
+      </div>
+    </div>
+  </div>
+  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+</main>
+
+<ng-template #editAuthor let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">Author Form</h5>
+    <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
+      style="cursor: pointer;"></i>
+  </div>
+  <div class="modal-body">
+    <form #authorForm="ngForm" (ngSubmit)="onSubmit(authorForm, d('Cross click'))">
+      <input readonly type="text" name="_id" #_id="ngModel" [(ngModel)]="bookService.selectedAuthor._id"
+        style="display: none;">
+      <input readonly type="text" name="releaseDate" #releaseDate="ngModel"
+        [(ngModel)]="bookService.selectedAuthor.releaseDate" style="display: none;">
+      <div class="row">
+        <input type="text" name="authorName" #authorName="ngModel" [(ngModel)]="bookService.selectedAuthor.authorName" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Author Name:</label>
+      </div>
+
+      <div class="row">
+        <input type="text" name="quote" #quote="ngModel" [(ngModel)]="bookService.selectedAuthor.quote" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Quote:</label>
+      </div>
+
+      <div class="row">
+        <div>
+          <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true"
+            name="interviewContent" #interviewContent="ngModel" [(ngModel)]="bookService.selectedAuthor.interviewContent">
+          </app-ngx-editor>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Main Category:</label>
+      </div>
+      <div class="row"><select style="display: block" name="category" #category="ngModel"
+          [(ngModel)]="bookService.selectedAuthor.category">
+          <option *ngFor="let item of categories">{{item.categoryName}}</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>Image:</label>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary green" *ngIf="!selectedFile" type="button" #upload (click)="file.click()">Upload
+          file</button>
+        <p *ngIf="selectedFile">File selected: {{selectedFile?.name}}</p>
+        <i *ngIf="selectedFile" (click)="onCancleFile()" class="far fa-trash-alt fa-2x"
+          style="color: red; margin-left: 1em; "></i>
+          <input #file type="file" name="file" (change)='onSelectedFile($event)' accept="image/*" style="display: none;">
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary blue" type="submit" [disabled]="!authorForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

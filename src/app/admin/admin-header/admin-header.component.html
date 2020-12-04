@@ -1,0 +1,80 @@
+
+<div class="logo">
+  <h1><i class="fas fa-glasses"></i>  T&T<br>Reviewer</h1>
+</div>
+<div class="navigate">
+  <h1>Admin Site</h1>
+  <a routerLink="/admin" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">BOOK MANAGER</a>
+  <a routerLink="/admin/author_manager" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">AUTHOR MANAGER</a>
+  <a class="" (click)="onCategory(editCategory)" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">CATEGORY MANAGER</a>
+  <a class="logout" (click)="onLogOut(logOut)">LOGOUT</a>
+</div>
+<ng-template #editCategory let-c="close"  let-d="dismiss" class="modal fade modal-slide-from-bottom">
+  <div class="modal-header"id = "modalHeader">
+    <!-- <h5 class="modal-title">Edit book {{bookService.selectedBook.bookName}} </h5> -->
+    <h5 class="modal-title">Category Manager</h5>
+    <!-- <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
+      style="cursor: pointer;"></i> -->
+      <button type="button" class="close close-modal" id="closeModalCate" data-dismiss="modal" aria-label="Close" (click)="d('Cross click'); showInputDiv=false">
+          <span aria-hidden="true"style="cursor: pointer;">×</span>
+      </button>
+  </div>
+  <div class="modal-body" style="overflow-y: scroll; overflow-x: hidden;">
+    <form #categoryForm="ngForm" (ngSubmit)="onSubmitCategory(categoryForm)">
+      <input readonly type="hidden"  name="categoryid" #categoryid="ngModel" [(ngModel)]="selectedCategory._id">
+      <!-- <button [disabled]="showInputDiv" type="button" (click)="showInputDiv = !showInputDiv">+</button> -->
+      <div class="icondemo vertical-align-middle" id="plusCate" style="text-align: right;" *ngIf="!showInputDiv" (click)="showInputDiv = !showInputDiv">
+        <i class="fas fa-plus" ></i>
+      </div>
+      <div class="divInpCate row" *ngIf="showInputDiv">
+        <div class="col-10"> 
+            <input class="inpCate inputCateName" style="border:0.5px solod lightgray;" type="text" name="categoryName" #categoryName="ngModel" [(ngModel)]="selectedCategory.categoryName">
+            <span style="color: red;" *ngIf="!selectedCategory.categoryName">This field is required!</span>
+      </div>
+        <div class="col-2">
+            <!-- <button type="submit" class="btn btn-primary blue" [disabled]="!selectedCategory.categoryName">Submit</button> -->
+            <i class="far fa-save" id="iconSave"  (click)="onSubmitCategory(categoryForm)"></i>
+        </div>
+        
+      </div>
+    </form>
+    <div>
+      <div *ngFor="let item of categories; let i = index" class="row"style="margin-bottom: 7px;">
+        <div class="col-1">
+          <p>{{i + 1}}</p>
+        </div>
+        <div class="col-7">
+          <p>{{item.categoryName}}</p>
+        </div>
+        <div class="col-4 row">
+          <!-- <button (click)="onEditCategory(item); showInputDiv = !showInputDiv;">Edit</button>
+          <button (click)="onDeleteCategory(item._id)">Delete</button> -->
+          <div class="col-6">
+            <div class="icondemo vertical-align-middle" (click)="onEditCategory(item); showInputDiv = !showInputDiv;">
+              <i class="far fa-edit"></i>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="icondemo vertical-align-middle" (click)="onDeleteCategory(item._id)">
+              <i class="fas fa-trash-alt" ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #logOut let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <!-- <h5 class="modal-title">Edit book {{bookService.selectedBook.bookName}} </h5> -->
+    <h5 class="modal-title">Log out</h5>
+    <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
+      style="cursor: pointer;"></i>
+  </div>
+  <div class="modal-body">
+    <h3>Do you want to log out?</h3>
+    <button style="background: gray" class="btn" (click)="d('Cross click')">Cancel</button>
+    <button style="margin-right: 20px;" class="btn btn-primary blue" (click)="logOutAdmin(); d('Cross click')">Confirm</button>
+  </div>
+</ng-template>

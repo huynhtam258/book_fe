@@ -1,0 +1,103 @@
+<header>
+  <app-admin-header></app-admin-header>
+</header>
+
+<div class="body">
+  <div>
+    <!-- <h3>{{adminDetail.username}}</h3> -->
+    <button class="logout btn btn-custom orange" type="button" (click)="onLogout()">Logout</button>
+  </div>
+  <aside>
+    <h2>List</h2>
+    <app-bookitem *ngFor="let item of books" [bookinp]='item' (click)="onEdit(item)"></app-bookitem>
+  </aside>
+
+  <main>
+    <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+      <input class="idfield" type="hidden" name="_id" #_id="ngModel" [(ngModel)]="bookService.selectedBook._id">
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <input type="text" name="bookName" #bookName="ngModel" [(ngModel)]="bookService.selectedBook.bookName"
+            required>
+          <label>Book Name:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <input type="text" name="author" #author="ngModel" [(ngModel)]="bookService.selectedBook.author">
+          <label>Authors:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <input type="text" name="bookContent" #bookContent="ngModel" [(ngModel)]="bookService.selectedBook.bookContent">
+          <label>Book Content:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <!-- <input type="text" name="category" #category="ngModel" [(ngModel)]="bookService.selectedBook.category"> -->
+          <select style="display: block" name="category" #category="ngModel" [(ngModel)]="bookService.selectedBook.category">
+            <option value="Romance">Romance</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Science">Science</option>
+            <option value="Kid">Kid</option>
+          </select>
+          <label>Category:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <input type="text" name="releaseDate" #releaseDate="ngModel" [(ngModel)]="bookService.selectedBook.releaseDate">
+          <label>Release Date:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <input type="file" name="file" (change)='onSelectedFile($event)'>
+          <label>Image
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="input-field clo s12">
+          <input type="text" name="image" #image="ngModel" [(ngModel)]="bookService.selectedBook.image">
+          <label>Image:
+            <label class="red-text">*</label>
+          </label>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="input-field clo s12">
+          <button class="btn btn-custom right blue" type="submit">Submit</button>
+          <button class="btn btn-custom right red" type="button" (click)="onDelete(bookService.selectedBook._id)">Delete</button>
+        </div>
+      </div>
+
+    </form>
+  </main>
+</div>
+
+<footer>
+  <app-admin-footer></app-admin-footer>
+</footer>

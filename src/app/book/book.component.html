@@ -1,0 +1,23 @@
+<header>
+  <app-book-header></app-book-header>
+</header>
+
+<div class="body">
+  <main>
+    <!-- <h2>Last Reviews</h2>
+    <app-book-item *ngFor="let item of books" [bookinp]='item'></app-book-item> -->
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<footer>
+  <div class="blur">
+    <!-- <img src="../../assets/foot-back.jpg" /> -->
+    <video autoplay loop>
+      <source src="../../assets/video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="foot-content">
+    <app-book-footer></app-book-footer>
+  </div>
+</footer>

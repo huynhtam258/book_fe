@@ -1,0 +1,18 @@
+
+<div class="row bookItem ">
+    <img class="col-5 imgbook" src='{{bookinp.image}}' [routerLink]="['detail', bookinp._id]">
+    <!-- <div class="col-4">
+        <div class="imgbook " [ngStyle]="{ 'background-image': 'url(' + bookinp.image + ')'}" [routerLink]="['detail', bookinp._id]"></div>
+    </div> -->
+    
+<!-- <img class="i  mgbook" src='../../../assets/download.jpg'> -->
+    <div class="col-7 bookinfo">
+        <div class="info">
+            <p class="bookName" style="text-align:left">{{bookinp.bookName}}</p>
+            <p class="bookAuthor"style="text-align:left">{{bookinp.author.authorName}}</p>
+        </div>
+        <div class="read" style="text-align:left">
+            <p [routerLink]="['/book/detail', bookinp._id]"><b>READ REVIEW > </b></p>
+        </div>
+    </div>
+</div>

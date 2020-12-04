@@ -1,0 +1,131 @@
+<main>
+  <div class="manageHead">
+    <h2>List</h2>
+    <div class="buttons">
+      <div class="search row">
+        <i class="fas fa-search"></i>
+        <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchBook" autocomplete="off"
+          placeholder="Start searching">
+      </div>
+      <button class="btn btn-primary blue" (click)="onCreate(editBook)">Create New Book</button>
+    </div>
+  </div>
+  <div class="bookContent col-md-6 col-12"
+    *ngFor="let item of books | filter:searchBook | paginate: { itemsPerPage: 6, currentPage: p1 };">
+    <img class="imgBook" src='{{item.image}}'>
+    <div class="bookInfo">
+      <div class="bookText">
+        <p>{{item?.bookName}}</p>
+        <p>{{item?.author?.authorName}}</p>
+        <p>{{item?.category?.categoryName}}</p>
+      </div>
+      <div class="bookBtn">
+        <i class="fas fa-comment-dots comment" (click)="onShowComment(item._id, item.bookName, commentView)"></i>
+        <i class="fas fa-pencil-alt edit" (click)="onEdit(item, editBook)"></i>
+        <i class="fas fa-trash delete" (click)="onDelete(item._id)"></i>
+      </div>
+    </div>
+  </div>
+</main>
+<pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+
+<ng-template #editBook let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title">Book Form</h5>
+    <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
+      style="cursor: pointer;"></i>
+  </div>
+  <div class="modal-body">
+    <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm, d('Cross click'))">
+      <input readonly type="text" name="_id" #_id="ngModel" [(ngModel)]="bookService.selectedBook._id"
+        style="display: none;">
+      <input readonly type="text" name="releaseDate" #releaseDate="ngModel"
+        [(ngModel)]="bookService.selectedBook.releaseDate" style="display: none;">
+      <div class="row">
+        <input type="text" name="bookName" #bookName="ngModel" [(ngModel)]="bookService.selectedBook.bookName" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Book Name:</label>
+      </div>
+      <div class="row">
+        <select style="display: block" name="author" [(ngModel)]="bookService.selectedBook.author._id">
+          <option  *ngFor="let item of authorArr" [selected]="true" value={{item._id}}>{{item.authorName}}</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <div>
+          <app-ngx-editor [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true"
+            name="bookContent" #bookContent="ngModel" [(ngModel)]="bookService.selectedBook.bookContent">
+          </app-ngx-editor>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <label>Category:</label>
+      </div>
+      <div class="row">
+        <select style="display: block" name="category" #category="ngModel"
+          [(ngModel)]="bookService.selectedBook.category">
+          <option *ngFor="let item of categories" value={{item._id}}>{{item.categoryName}}</option>
+        </select>
+      </div> -->
+
+      <div class="row">
+        <label>Image:</label>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary green" *ngIf="!selectedFile" type="button" #upload (click)="file.click()">Upload
+          file</button>
+        <p *ngIf="selectedFile">File selected: {{selectedFile?.name}}</p>
+        <i *ngIf="selectedFile" (click)="onCancleFile()" class="far fa-trash-alt fa-2x"
+          style="color: red; margin-left: 1em; "></i>
+        <input #file type="file" name="file" (change)='onSelectedFile($event)' accept="image/*" style="display: none;">
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary blue" type="submit" [disabled]="!bookForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #commentView let-c="close" let-d="dismiss">
+  <div class="modal-header" id="modalHeader">
+    <h5 class="modal-title">Comments of {{nameBookReview}}</h5>
+    <button type="button" class="close close-modal" id="" data-dismiss="modal" aria-label="Close"
+      (click)="d('Cross click'); showInputDiv=false" style="cursor: pointer;">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body commentShow" style="overflow-x: hidden; overflow-y:scroll">
+    <div class="comment  row" *ngFor="let item of reviewComments | paginate: { itemsPerPage: 5, currentPage: p2 };">
+      <div class="tip contentComment col-11">
+        <div class="headerComment">
+          <p style="font-weight: bold;">{{item.nameReviwer.username}} - <span
+              style="font-weight: none;">{{item.rate}}/5<i class="fas fa-star" style="color: #CDCD00"></i></span></p>
+        </div>
+        <div class="text">
+          <div class="textContent" [innerHTML]="item.contentcomment"></div>
+        </div>
+        <div style="font-size: 12px; justify-content: flex-end;" class="footerComment">
+          <p>{{item.date}}</p>
+        </div>
+        <!-- <div *ngFor='let content of listChildComment[item._id]'><strong>{{content?.nameReviwer}}</strong>
+          {{content.contentChild}}</div> -->
+        <div *ngFor='let content of listChildComment[item._id]'>
+          <span *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong>
+            {{content.contentChild}}</span>
+        </div>
+        <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button
+            (click)="sendComment(item)">Send</button></div>
+      </div>
+      <div class="col-1">
+        <i class="fas fa-trash-alt" (click)="onDeleteComment(item._id, item.bookId)"
+          style="color: rgb(243, 56, 56);font-size: 20px;padding-top: 25px;"></i>
+      </div>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
+</ng-template>

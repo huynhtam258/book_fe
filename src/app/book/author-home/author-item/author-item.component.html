@@ -1,0 +1,13 @@
+<div class="row bookItem ">
+  <img class="col-5 imgbook" src='{{authorinp.image}}' [routerLink]="['detailAuthor', authorinp._id]">
+  <div class="col-7 bookinfo">
+      <div class="info">
+          <p class="bookName" style="text-align:left">{{authorinp.authorName}}</p>
+          <p class="bookAuthor"style="text-align:left">{{authorinp.category}}</p>
+          <p class="bookCategory" style="text-align:left;">{{authorinp.quote}}</p>
+      </div>
+      <div class="read" style="text-align:left">
+          <p [routerLink]="['/book/detailAuthor', authorinp._id]"><b>READ INTERVIEW > </b></p>
+      </div>
+  </div>
+</div>

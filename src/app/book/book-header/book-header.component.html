@@ -1,0 +1,19 @@
+<div class="logo">
+  <h1 routerLink="/book"><i class="fas fa-glasses"></i> T&T<br>Reviewer</h1>
+</div>
+
+<div class="ul_div">
+  <ul>
+    <li *ngIf="!nameUser" (click)="login()" routerLinkActive="router-link-active" >Đăng nhập</li>
+    <li *ngIf="nameUser">Xin chào {{nameUser}}</li>
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" class="bookreview">Book Reviews
+      <ul class="listcategory">
+        <li routerLink="/book">All reviews</li>
+        <li (click)="getCategory(item.categoryName)" *ngFor="let item of categories">{{item.categoryName}}</li>
+      </ul>
+    </li>
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['authors']">Interviews</li>
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['aboutUs']">About Us</li>
+    <li *ngIf="nameUser" (click)="logOut()">Logout</li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<body>
+  <section class="formRegis">
+    <form #regisForm="ngForm" (ngSubmit)="regisForm.valid && onSubmit(regisForm)">
+      <div class="form-group">
+        <label for="iputid"><i class="fas fa-user"></i>Username</label>
+        <input type="text" class="form-control" id="iputid" #username="ngModel" name="username" [(ngModel)]="adminService.selectedAdmin.username" aria-describedby="inputid_help" placeholder="Username">
+        <small id="inputid_help" class="form-text text-muted">Keep it safe.</small>
+      </div>
+      <div class="form-group">
+        <label for="inputpass"><i class="fas fa-key"></i>Password</label>
+        <input type="password" class="form-control" id="inputpass" #password="ngModel" name="password" [(ngModel)]="adminService.selectedAdmin.password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="inputpass"><i class="fas fa-key"></i>First Name</label>
+        <input type="text" class="form-control" id="inputpass" #password="ngModel" name="firstname" [(ngModel)]="adminService.selectedAdmin.firstname" placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <label for="inputpass"><i class="fas fa-key"></i>Last Name</label>
+        <input type="text" class="form-control" id="inputpass" #password="ngModel" name="lastname" [(ngModel)]="adminService.selectedAdmin.lastname" placeholder="Last Name">
+      </div>
+      <!-- <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me!</label>
+      </div> -->
+      <button type="submit" class="btn btn-primary btn-login">Submit</button>
+    </form>
+    <p>Go to <a href="/auth/login"><strong>Login</strong></a></p>
+  </section>
+</body>

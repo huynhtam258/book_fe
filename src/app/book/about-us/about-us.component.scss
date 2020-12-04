@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Dustismo;
+    src: url(/src/assets/font/Dustismo_Roman_Bold.ttf) format('truetype'),
+  }
+:host{
+    font-family: 'Dustismo';
+    display: block;
+    border: 1px solid black;
+    padding: 2em;
+    .head{
+        font-weight: bold;
+        font-size: 2em;
+    }
+}

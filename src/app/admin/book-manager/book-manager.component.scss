@@ -1,0 +1,326 @@
+main {
+  // border: solid 1px black;
+  width: 100%;
+  overflow: hidden;
+  padding: 3% 2%;
+  min-height: 940px;
+  .manageHead{
+    height: 50px;
+    padding: 0 25px;
+    h2{
+      float: left;
+    }
+    .buttons{
+      float: right;
+      button{
+        margin-left: 20px;
+        border: none;
+        height: 45px;
+      }
+    }
+    .search{
+      margin: 0;
+      float: left;
+      i{
+        padding: 14px;
+        border: 1px solid black;
+      }
+      input{
+        width: 160px;
+        height: 43px;
+        border: 1px solid black;
+        border-left: unset;
+        padding: 0 10px;
+      }
+    }
+  }
+  .bookContent {
+    border: 1px solid black;
+    max-height: 224px;
+    display: flex;
+    float: left;
+    margin: 2%;
+    width: 46%;
+    .imgBook {
+      height: 190px;
+      margin: 3% 0;
+      flex: 1;
+    }
+    .bookInfo {
+      flex: 3;
+      text-align: left;
+      padding: 3%;
+      .bookText{
+        height: 80%;
+      }
+      .bookBtn {
+        height: 20%;
+        text-align: right;
+        i{
+          font-size: 30px;
+          color: rgb(58, 58, 58);
+          cursor: pointer;
+        }
+        i + i{
+          margin-left: 15px;
+        }
+        i:nth-child(1):hover{
+          color: #5483ca;
+        }
+        i:nth-child(2):hover{
+          color: #6edb73;
+        }
+        i:nth-child(3):hover{
+          color: #ca5454;
+        }
+      }
+    }
+  }
+}
+
+.commentShow {
+  .comment {
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    
+    // .contentComment {
+    //   border: black solid 1px;
+    //   float: left;
+    // }
+    .contentComment {
+      // width: 920px !important;
+      padding-bottom: 40px;
+      min-height: auto !important;
+      padding-right: 0;
+      float: left;
+      p{
+        margin: 0;
+      }
+      .headerComment{
+
+      }
+      .footerComment{
+        display: flex;
+      }
+    }
+
+    // .contentComment > p:first-of-type {
+    //   background: #ececec;
+    //   /* border: 1px solid #ccc; */
+    //   border-radius: 22px;
+    //   font-style: italic;
+    //   padding: 5px 10px;
+    //   margin-bottom: 40px;
+    // }
+
+    .tip {
+      background: #ececec;
+      border: 1px solid #ccc;
+      border-radius: 22px;
+      padding: 10px;
+      font-size: 1.2em;
+      position: relative;
+      margin-left: 0;
+      // width: 200px;
+    }
+
+    // .tip:before {
+    //   position: absolute;
+    //   top: -14px;
+    //   left: 98px;
+    //   display: inline-block;
+    //   border-right: 14px solid transparent;
+    //   border-bottom: 14px solid #fff;
+    //   border-left: 14px solid transparent;
+    //   border-bottom-color: rgba(0, 0, 0, 0.2);
+    //   content: "";
+    // }
+
+    // .tip:after {
+    //   position: absolute;
+    //   top: -12px;
+    //   left: 99px;
+    //   display: inline-block;
+    //   border-right: 12px solid transparent;
+    //   border-bottom: 12px solid #fff;
+    //   border-left: 12px solid transparent;
+    //   content: "";
+    // }
+
+    // .tip.contentComment:before {
+    //   border-top: 14px solid transparent;
+    //   border-right: 14px solid #fff;
+    //   border-bottom: 14px solid transparent;
+    //   border-right-color: rgba(0, 0, 0, 0.2);
+    //   left: -28px;
+    //   top: 20px;
+    // }
+
+    // .tip.contentComment:after {
+    //   border-top: 12px solid transparent;
+    //   border-right: 12px solid #fff;
+    //   border-bottom: 12px solid transparent;
+    //   left: -24px;
+    //   top: 22px;
+    // }
+  }
+}
+.modalComManage{
+  width: 600px !important;
+  height: 700px !important;
+  overflow : unset !important;
+  #modalHeader{
+    padding-top: 0px;
+    button:focus{
+      border: none !important;
+      outline: none;
+    }
+  }
+  .modal-body{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 350px;
+  }
+}
+
+.modal-book{
+  width: 51em;
+  overflow: hidden !important;
+  .modal-body{
+    padding: 2rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 33em;
+    .ngx-editor .ngx-wrapper .ngx-editor-textarea{
+      width: 45em !important;
+    }
+  }
+}
+
+// Affect Input
+.group,
+.row {
+  position: relative;
+  margin-bottom: 45px;
+}
+input,
+select {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #757575;
+  margin: 0 !important;
+}
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label,
+select:focus ~ label,
+select:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after,
+select:focus ~ .bar:before,
+select:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight,
+select:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

@@ -1,0 +1,17 @@
+<div>
+    <h2 style="float: left; margin-right: 20px">List Reviews</h2>
+    <div class="search row">
+        <i class="fas fa-search"></i>
+        <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchBook" 
+        autocomplete="off" placeholder="Start searching">
+    </div>
+</div>
+<div class="row bookHome" >
+    <app-book-item
+    class="col-md-4 col-12" 
+    *ngFor="let item of books | filter:searchBook | paginate: { itemsPerPage: 9, currentPage: p };"
+    [bookinp]='item'
+></app-book-item>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

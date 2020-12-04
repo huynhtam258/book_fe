@@ -1,0 +1,19 @@
+:host{
+    display: block;
+    border: 1px solid black;
+    width: 96%;
+    height: 104px;
+    margin: 5% 1.5%;
+    overflow: hidden;
+}
+
+.imgbook{
+    width: 65px;
+    float: left;
+    margin: 2% 2%;
+    border-radius: 8px;
+}
+.bookinfo{
+    float: right;
+    margin: 4% 8% 0% 0%;
+}

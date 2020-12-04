@@ -1,0 +1,9 @@
+<h2>Author: {{selectedAuthor}}</h2>
+<div class="row" >
+  <app-book-item
+  class="col-md-4 col-12" 
+  *ngFor="let item of books | paginate: { itemsPerPage: 9, currentPage: p };"
+  [bookinp]='item'
+></app-book-item>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

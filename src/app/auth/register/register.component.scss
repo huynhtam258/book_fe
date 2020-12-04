@@ -1,0 +1,24 @@
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../../assets/regis.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .formRegis{
+        padding: 10px;
+        background-color: white;
+        height: 54%;
+        width: 26%;
+        border-radius: 20px;
+        text-align: center;
+        i{
+            margin-right: 5px;
+        }
+        .btn-login{
+            background: #f86d68;
+        }
+    }
+}
