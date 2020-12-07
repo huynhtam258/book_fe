@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/@core/models/book';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/@core/Services/book.service';
 
 @Component({
@@ -15,22 +15,24 @@ export class BookByCategoryComponent implements OnInit {
   public p;
   constructor(
     public bookService: BookService,
-    public router: Router
+    public router: Router,
+    private activedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.selectedCategory = localStorage.getItem('category');
-    if (this.selectedCategory) {
-      this.getBookByAuthor();
-    } else {
+    this.activedRoute.queryParams.subscribe(res =>{
+      if(res.id && res.nameCategory){
+        this.selectedCategory = res.nameCategory;
+        this.getBookByAuthor(res.id);
+        return;
+      }
       this.router.navigate(['book']);
-    }
+    })
   }
 
-  getBookByAuthor() {
-    this.bookService.getBookByCategory(this.selectedCategory).subscribe(res => {
-      console.log('List book', res);
-      this.books = res as Book[];
+  getBookByAuthor(id) {
+    this.bookService.getBookByCategory(id).subscribe((res: any) => {
+      this.books = res.data as Book[];
     }, err => {
       console.log(err);
     });

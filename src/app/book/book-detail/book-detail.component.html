@@ -105,7 +105,7 @@
       </div>
       
     </div>
-    <div>Xoá bình luận</div>
+    <div (click)="deleteComment(item._id)" *ngIf="item.nameReviwer?._id == user._id">Xoá bình luận</div>
     
   </div>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

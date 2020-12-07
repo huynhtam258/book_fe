@@ -162,7 +162,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     )
   }
 
-  deleteComment(id){
-    this.bookService.deleteComment(id).subscribe((res)=>{})
+  deleteComment(id) {
+    this.bookService.deleteComment(id).subscribe(
+      (res) => { this.getComments(this.bookId) },
+      (error) => { console.log(error) })
   }
 }

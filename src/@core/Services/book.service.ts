@@ -34,7 +34,7 @@ export class BookService {
     }
     getBookByCategory(category) {
         // const url = environment.apiBaseUrl + '/getbookauthor' + '?author=' + this.selectedAuthor;
-        const url = environment.apiBaseUrl + '/getbookcategory' + '?category=' + category;
+        const url = environment.apiBaseUrl + '/getbookcategory' + '/' + category;
         return this.http.get(url);
     }
     getBookById(id) {

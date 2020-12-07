@@ -29,7 +29,10 @@ export class BookHeaderComponent implements OnInit {
   getCategory(category) {
     localStorage.setItem('category', category);
     this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(() =>
-    this.router.navigate(['book/bookByCategory']));
+    this.router.navigate(['book/bookByCategory'], {queryParams: {
+      id: category._id,
+      nameCategory: category.categoryName
+    }}));
   }
 
   login(){
@@ -37,8 +40,9 @@ export class BookHeaderComponent implements OnInit {
   }
   getProfile(){
     this.gb.handler.subscribe(res => {
-      this.nameUser = res.firstname + res.lastname;
-      
+      if(res.firstname && res.lastname){
+        this.nameUser = res.firstname + ' ' + res.lastname;
+      }
     })
   }
   

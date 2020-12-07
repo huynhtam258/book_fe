@@ -6,14 +6,14 @@
   <ul>
     <li *ngIf="!nameUser" (click)="login()" routerLinkActive="router-link-active" >Đăng nhập</li>
     <li *ngIf="nameUser">Xin chào {{nameUser}}</li>
-    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" class="bookreview">Book Reviews
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" class="bookreview">Thể loại sách
       <ul class="listcategory">
-        <li routerLink="/book">All reviews</li>
-        <li (click)="getCategory(item.categoryName)" *ngFor="let item of categories">{{item.categoryName}}</li>
+        <li routerLink="/book">Tất cả sách</li>
+        <li (click)="getCategory(item)" *ngFor="let item of categories">{{item.categoryName}}</li>
       </ul>
     </li>
-    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['authors']">Interviews</li>
-    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['aboutUs']">About Us</li>
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['authors']">Tác giả</li>
+    <li routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['aboutUs']">Thông tin thêm</li>
     <li *ngIf="nameUser" (click)="logOut()">Logout</li>
   </ul>
 </div>
