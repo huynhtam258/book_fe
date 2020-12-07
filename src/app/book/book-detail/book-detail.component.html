@@ -81,7 +81,7 @@
         <img src="assets/guest_logo.jpg">
       </div>
       <div class="row" style="margin-bottom: 0;" id="divReName">
-          <p id="pName" class="col-12" style="font-weight: bold;float: left;">{{item.nameReviwer?.username}}</p>
+          <p id="pName" class="col-12" style="font-weight: bold;float: left;">{{item.nameReviwer?.firstname+ ' '+ item.nameReviwer?.lastname}}</p>
       </div>
       <div class="row"style="margin-bottom: 0;">
         <ngx-stars [color]="'#FFFF00'" [readonly]="true" [maxStars]="5" [initialStars]="item.rate"[size]=""></ngx-stars>
@@ -101,10 +101,11 @@
         <div *ngFor='let content of listChildComment[item._id]'>
           <span *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong> {{content.contentChild}}</span>
         </div>
-        <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button (click)="sendComment(item)">Send</button></div>
+        <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button (click)="sendComment(item)">Gửi bình luận</button></div>
       </div>
       
     </div>
+    <div>Xoá bình luận</div>
     
   </div>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>

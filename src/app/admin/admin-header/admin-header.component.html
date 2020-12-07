@@ -3,10 +3,10 @@
   <h1><i class="fas fa-glasses"></i>  T&T<br>Reviewer</h1>
 </div>
 <div class="navigate">
-  <h1>Admin Site</h1>
-  <a routerLink="/admin" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">BOOK MANAGER</a>
-  <a routerLink="/admin/author_manager" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">AUTHOR MANAGER</a>
-  <a class="" (click)="onCategory(editCategory)" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">CATEGORY MANAGER</a>
+  <h1>Giao diện quản lí</h1>
+  <a routerLink="/admin" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">Quản lí sách</a>
+  <a routerLink="/admin/author_manager" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">Quản lí tác giả</a>
+  <a class="" (click)="onCategory(editCategory)" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">Quản lí thể loại</a>
   <a class="logout" (click)="onLogOut(logOut)">LOGOUT</a>
 </div>
 <ng-template #editCategory let-c="close"  let-d="dismiss" class="modal fade modal-slide-from-bottom">
@@ -68,13 +68,13 @@
 <ng-template #logOut let-c="close" let-d="dismiss">
   <div class="modal-header">
     <!-- <h5 class="modal-title">Edit book {{bookService.selectedBook.bookName}} </h5> -->
-    <h5 class="modal-title">Log out</h5>
+    <h5 class="modal-title">Đăng xuất</h5>
     <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
       style="cursor: pointer;"></i>
   </div>
   <div class="modal-body">
-    <h3>Do you want to log out?</h3>
-    <button style="background: gray" class="btn" (click)="d('Cross click')">Cancel</button>
-    <button style="margin-right: 20px;" class="btn btn-primary blue" (click)="logOutAdmin(); d('Cross click')">Confirm</button>
+    <h3>Bạn có muốn đăng xuất?</h3>
+    <button style="background: gray" class="btn" (click)="d('Cross click')">Kết thúc</button>
+    <button style="margin-right: 20px;" class="btn btn-primary blue" (click)="logOutAdmin(); d('Cross click')">Đồng ý</button>
   </div>
 </ng-template>

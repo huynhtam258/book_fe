@@ -76,6 +76,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   getComments(bookId) {
     this.bookService.getComment(bookId).subscribe(res => {
       this.reviewComments = res as ReviewComment[];
+      console.log(this.reviewComments)
       if(res){
         res.map((result) => {
           this.getChildComment(result._id)
@@ -91,12 +92,12 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   }
 
   onComment(form: NgForm) {
-    let childReviewer:any = [];
+    let childReviewer: any = [];
     if (form.value.bookId !== '' && form.valid) {
-    let data = {nameReviwer: localStorage.getItem('id'), ...form.value, childReviewer}
+      let data = { nameReviwer: localStorage.getItem('id'), ...form.value, childReviewer }
       this.bookService.postComment(data).subscribe((res) => {
         form.reset();
-         this.resetForm();
+        this.resetForm();
         this.getComments(this.bookId);
       });
     } else {
@@ -159,5 +160,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         this.listChildComment[id] = res;
       }
     )
+  }
+
+  deleteComment(id){
+    this.bookService.deleteComment(id).subscribe((res)=>{})
   }
 }

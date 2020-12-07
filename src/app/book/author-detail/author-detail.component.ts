@@ -5,6 +5,7 @@ import { NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Author } from 'src/@core/models/author';
+import { query } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-author-detail',
@@ -50,7 +51,7 @@ export class AuthorDetailComponent implements OnInit, OnDestroy {
   getAuthor(author) {
     // this.bookService.selectedAuthor = author;
     // console.log(this.bookService.selectedAuthor);
-    localStorage.setItem('author', author);
-    this.router.navigate(['book/bookByAuthor']);
+    // localStorage.setItem('author', author);
+    this.router.navigate(['book/bookByAuthor'],{queryParams: { id: author}});
   }
 }

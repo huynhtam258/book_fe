@@ -4,14 +4,14 @@
       autocomplete="off" placeholder="&#61442;  Start searching">
   </div> -->
   <div class="manageHead">
-    <h2>List</h2>
+    <h2>Danh sách các tác giả</h2>
     <div class="buttons">
       <div class="search row">
         <i class="fas fa-search"></i>
         <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchAuthor" 
-        autocomplete="off" placeholder="Start searching">
+        autocomplete="off" placeholder="Tìm kiếm">
       </div>
-      <button class="btn btn-primary blue" (click)="onCreate(editAuthor)">Create New Author</button>
+      <button class="btn btn-primary blue" (click)="onCreate(editAuthor)">Tạo mới tác giả</button>
     </div>
   </div>
   <div class="interviewContent col-md-6 col-12" *ngFor="let item of authors | filter:searchAuthor | paginate: { itemsPerPage: 6, currentPage: p };">
@@ -70,7 +70,7 @@
       </div>
       <div class="row"><select style="display: block" name="category" #category="ngModel"
           [(ngModel)]="bookService.selectedAuthor.category">
-          <option *ngFor="let item of categories">{{item.categoryName}}</option>
+          <option *ngFor="let item of categories" value={{item._id}}>{{item.categoryName}}</option>
         </select>
       </div>
 

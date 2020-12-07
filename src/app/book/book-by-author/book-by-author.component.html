@@ -1,4 +1,4 @@
-<h2>Author: {{selectedAuthor}}</h2>
+<h2>Author: {{author?.authorName}}</h2>
 <div class="row" >
   <app-book-item
   class="col-md-4 col-12" 
@@ -6,4 +6,4 @@
   [bookinp]='item'
 ></app-book-item>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->

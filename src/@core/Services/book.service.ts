@@ -29,7 +29,7 @@ export class BookService {
     }
     getBookByAuthor(author) {
         // const url = environment.apiBaseUrl + '/getbookauthor' + '?author=' + this.selectedAuthor;
-        const url = environment.apiBaseUrl + '/getbookauthor' + '?author=' + author;
+        const url = environment.apiBaseUrl + '/getbookauthor' + '/' + author;
         return this.http.get(url);
     }
     getBookByCategory(category) {
@@ -200,4 +200,5 @@ export class BookService {
     getChildComment(id){
         return this.http.get(environment.apiBaseUrl + '/getchildcmt/' + id);
     }
+
 }

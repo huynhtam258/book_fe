@@ -37,7 +37,6 @@ export class BookHeaderComponent implements OnInit {
   }
   getProfile(){
     this.gb.handler.subscribe(res => {
-      console.log(res);
       this.nameUser = res.firstname + res.lastname;
       
     })

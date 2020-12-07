@@ -8,13 +8,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { FirstpageComponent } from './firstpage/firstpage.component';
 
 import { AuthGuard } from 'src/@core/auth/auth.guard';
-
+// , canActivate: [AuthGuard] 
 const routes: Routes = [
   {
     path: '', component: AppComponent, children: [
       { path: '', component: FirstpageComponent },
       { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
-      { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthGuard] },
+      { path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
       { path: 'book', loadChildren: './book/book.module#BookModule' }
     ]
   },

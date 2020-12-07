@@ -87,9 +87,7 @@ export class AuthorManagerComponent implements OnInit {
     this.selectedFile = undefined;
   }
   onSubmit(form: NgForm) {
-    
     if (form.value._id == null) {
-      console.log('Create new Author.');
       this.bookService.postAuthor(form.value, this.selectedFile).subscribe((res) => {
           this.resetForm(form);
           this.getAuthors();
@@ -113,12 +111,15 @@ export class AuthorManagerComponent implements OnInit {
     });
   }
   onDelete(_id: String, form: NgForm) {
-    if (confirm('Are you sure to delete this?') === true) {
-      this.bookService.deleteAuthor(_id).subscribe((res) => {
-        this.getAuthors();
-        this.resetForm(form);
-      });
-    }
+    console.log('a')
+    this.bookService.deleteAuthor(_id).subscribe((res) => {
+      console.log(res)
+      this.getAuthors();
+      this.resetForm(form);
+    });
+    // if (confirm('Are you sure to delete this?') === true) {
+      
+    // }
   }
 
   getCategory() {

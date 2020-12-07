@@ -19,24 +19,27 @@ export class LoginComponent implements OnInit {
   };
 
   ngOnInit() {
+    localStorage.clear();
   }
   onLogin(form: NgForm) {
     this.adminService.login(form.value).subscribe(
       (res: any) => {
+        console.log(res)
         this.gb.handler.next(res);
         this.adminService.setToken(res['token']);
-        localStorage.setItem('id', res.user.id)
+        localStorage.setItem('id', res.user.id);
+        if(res.body.role == 'admin'){
+          this.router.navigateByUrl('admin');
+        }else{
+          this.router.navigateByUrl('book');
+        }
         this.adminService.setUsername(res['user'].username);
-        this.adminService.getAdmin(localStorage.getItem('id')).subscribe(
+        this.adminService.getAdmin(res.user.id).subscribe(
           res => {
             this.gb.handler.next(res);
           }
         )
-        if(res.user.role == 'admin'){
-          this.router.navigateByUrl('admin');
-          return;
-        }
-        this.router.navigateByUrl('book');
+        
       },
       err => {
         console.log(err.error.massage);

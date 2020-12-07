@@ -1,13 +1,13 @@
 <main>
   <div class="manageHead">
-    <h2>List</h2>
+    <h2>Danh sách những cuốn sách</h2>
     <div class="buttons">
       <div class="search row">
         <i class="fas fa-search"></i>
         <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchBook" autocomplete="off"
-          placeholder="Start searching">
+          placeholder="Tìm kiếm">
       </div>
-      <button class="btn btn-primary blue" (click)="onCreate(editBook)">Create New Book</button>
+      <button class="btn btn-primary blue" (click)="onCreate(editBook)">Tạo sách mới</button>
     </div>
   </div>
   <div class="bookContent col-md-6 col-12"
@@ -27,11 +27,11 @@
     </div>
   </div>
 </main>
-<pagination-controls (pageChange)="p1 = $event"></pagination-controls>
+<!-- <pagination-controls (pageChange)="p1 = $event"></pagination-controls> -->
 
 <ng-template #editBook let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h5 class="modal-title">Book Form</h5>
+    <h5 class="modal-title">Soạn thảo chi tiết</h5>
     <i class="far fa-times-circle btn-close fa-2x" aria-label="Close" (click)="d('Cross click')"
       style="cursor: pointer;"></i>
   </div>

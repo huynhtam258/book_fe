@@ -14,7 +14,7 @@
 
       <div class="row rowInfo">
         <span class="pInfoBook col-6 colLeft" style="text-align:right">Main category:</span>
-        <a class="pInfoBook col-6 colRight" style="text-align:left">{{author.category}}</a>
+        <a class="pInfoBook col-6 colRight" style="text-align:left">{{author.category?.categoryName}}</a>
       </div>
       
       <div class="row rowInfo">
@@ -24,8 +24,8 @@
     </div>
 
     <div class="row rowInfo">
-      <p class ="pInfoBook col-12" id="pBookAuthor" (click)="getAuthor(author.authorName)" 
-      style="color:#555555;text-align: center">All book</p>
+      <p class ="pInfoBook col-12" id="pBookAuthor" (click)="getAuthor(author._id)" 
+      style="color:#555555;text-align: center; cursor: pointer;">Xem tất cả sách của tác giả</p>
     </div>
   </div>
 

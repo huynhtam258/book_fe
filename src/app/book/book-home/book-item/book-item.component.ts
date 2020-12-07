@@ -13,12 +13,5 @@ export class BookItemComponent implements OnInit {
   constructor(public bookService: BookService) { }
 
   ngOnInit() {
-    console.log(this.bookinp);
   }
-
-  // goDetail(id: string){
-  //   console.log(id);
-  //   // this.bookService.getBookById(id).subscribe(res)
-  // }
-
 }

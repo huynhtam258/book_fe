@@ -13,7 +13,7 @@ export class BookHomeComponent implements OnInit {
   public searchBook;
   public book: Book;
   public books: Book[];
-  public p;
+  // public p;
   constructor(public bookService: BookService, public http: HttpClient, public router: Router) { }
 
   ngOnInit() {
@@ -21,7 +21,6 @@ export class BookHomeComponent implements OnInit {
   }
   getBooks() {
     this.bookService.getBook().subscribe(res => {
-      console.log('List book', res);
       this.books = res as Book[];
     }, err => {
       console.log(err);
