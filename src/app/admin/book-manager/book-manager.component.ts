@@ -93,13 +93,11 @@ export class BookManagerComponent implements OnInit {
       bookName: '',
       author: '',
       bookContent: '',
-      category: '',
       image: '',
       releaseDate: this.date,
     };
   }
   resetFormCategory(form?: NgForm) {
-    // tslint:disable-next-line:curly
     if (form)
       form.reset();
     this.selectedCategory = {
@@ -122,18 +120,7 @@ export class BookManagerComponent implements OnInit {
       this.bookService.postBook(form.value, this.selectedFile)
         .subscribe((res) => { this.getBooks()})
     }
-    
-    // if(form._id){
-      
-    // }else{
-    //   this.bookService.postBook(form.value, this.selectedFile)
-    //     .subscribe((res) => { this.getBooks()})
-    // }
-    // console.log(this.bookService.selectedBook);
-    
-    console.log(form.value)
-    // this.bookService.postBook(form.value, this.selectedFile)
-    //   .subscribe((res) => { this.getBooks()})
+    this.resetForm();
   }
 
   onDelete(_id: String, form: NgForm) {
@@ -170,7 +157,10 @@ export class BookManagerComponent implements OnInit {
     });
   }
   onEdit(book: any, editBook) {
+    console.log(book);
+    
     this.bookService.selectedBook = book;
+    this.selectedFile = book.image;
     this.modalBook = this.modalService.open(editBook, { windowClass: 'modal-list modal-book' });
     this.modalBook.result.then((result) => {
       this.closeModalBook = `Closed with: ${result}`;

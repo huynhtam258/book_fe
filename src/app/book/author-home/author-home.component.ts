@@ -22,7 +22,6 @@ export class AuthorHomeComponent implements OnInit {
 
   getAuthors() {
     this.bookService.getAuthors().subscribe(res => {
-      console.log('List author', res);
       this.authors = res as Author[];
     }, err => {
       console.log(err);

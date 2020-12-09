@@ -3,7 +3,7 @@ import { BookService } from 'src/@core/Services/book.service';
 import { Book } from 'src/@core/models/book';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { AppHelper } from './../../../@core/app.help';
 @Component({
   selector: 'app-book-home',
   templateUrl: './book-home.component.html',

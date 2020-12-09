@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import * as $ from 'jquery';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Admin } from 'src/@core/models/admin';
+import { AppHelper } from 'src/@core/app.help';
 
 @Component({
   selector: 'app-admin-header',
@@ -103,16 +104,9 @@ export class AdminHeaderComponent implements OnInit {
   }
   logOutAdmin() {
     this.adminService.deleteToken();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate([AppHelper.ROUTER_NAVIGATE_LOGIN]);
   }
-  // getAdmin() {
-  //   this.adminService.getAdmin().subscribe(res => {
-  //     this.adminGet = res['admin'];
-  //     console.log('Welcome:', this.adminGet);
-  //   }, err => {
-  //     console.log(err);
-  //   });
-  // }
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

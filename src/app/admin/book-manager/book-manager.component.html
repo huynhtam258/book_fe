@@ -49,7 +49,7 @@
       </div>
       <div class="row">
         <select style="display: block" name="author" [(ngModel)]="bookService.selectedBook.author._id">
-          <option  *ngFor="let item of authorArr" [selected]="true" value={{item._id}}>{{item.authorName}}</option>
+          <option  *ngFor="let item of authorArr" value={{item._id}}>{{item.authorName}}</option>
         </select>
       </div>
 
@@ -76,9 +76,10 @@
       </div>
 
       <div class="row">
-        <button class="btn btn-primary green" *ngIf="!selectedFile" type="button" #upload (click)="file.click()">Upload
-          file</button>
-        <p *ngIf="selectedFile">File selected: {{selectedFile?.name}}</p>
+        <button class="btn btn-primary green" *ngIf="!selectedFile" type="button" #upload (click)="file.click()">
+          Hình ảnh cho sách
+        </button>
+        <p *ngIf="selectedFile">File selected: {{selectedFile?.name || selectedFile}}</p>
         <i *ngIf="selectedFile" (click)="onCancleFile()" class="far fa-trash-alt fa-2x"
           style="color: red; margin-left: 1em; "></i>
         <input #file type="file" name="file" (change)='onSelectedFile($event)' accept="image/*" style="display: none;">
@@ -127,5 +128,5 @@
       </div>
     </div>
   </div>
-  <pagination-controls (pageChange)="p2 = $event"></pagination-controls>
+  <!-- <pagination-controls (pageChange)="p2 = $event"></pagination-controls> -->
 </ng-template>

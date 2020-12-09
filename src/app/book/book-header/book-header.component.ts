@@ -3,6 +3,7 @@ import { Category } from 'src/@core/models/category';
 import { BookService } from 'src/@core/Services/book.service';
 import { Router } from '@angular/router';
 import { GlobalService } from 'src/@core/Services/global.service';
+import { AppHelper } from 'src/@core/app.help';
 
 @Component({
   selector: 'app-book-header',
@@ -27,16 +28,16 @@ export class BookHeaderComponent implements OnInit {
     });
   }
   getCategory(category) {
-    localStorage.setItem('category', category);
+    // localStorage.setItem('category', category);
     this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(() =>
-    this.router.navigate(['book/bookByCategory'], {queryParams: {
+    this.router.navigate([AppHelper.ROUTER_NAVIGATE_BOOK_BY_CATEGORY], {queryParams: {
       id: category._id,
       nameCategory: category.categoryName
     }}));
   }
 
   login(){
-    this.router.navigate(['auth/login']);
+    this.router.navigate([AppHelper.ROUTER_NAVIGATE_LOGIN]);
   }
   getProfile(){
     this.gb.handler.subscribe(res => {
@@ -48,7 +49,7 @@ export class BookHeaderComponent implements OnInit {
   
   logOut(){
     localStorage.clear();
-    this.gb.handler.next({})
+    this.gb.handler.next({});
     this.router.navigate(['/']);
   }
 

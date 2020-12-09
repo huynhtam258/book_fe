@@ -66,9 +66,9 @@
       </div>
 
       <div class="row">
-        <label>Main Category:</label>
+        <label>Thể loại chính của tác giả:</label>
       </div>
-      <div class="row"><select style="display: block" name="category" #category="ngModel"
+      <div class="row"><select style="display: block" name="category" 
           [(ngModel)]="bookService.selectedAuthor.category">
           <option *ngFor="let item of categories" value={{item._id}}>{{item.categoryName}}</option>
         </select>

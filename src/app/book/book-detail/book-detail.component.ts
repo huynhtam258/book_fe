@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/@core/Services/admin.service';
 import { GlobalService } from 'src/@core/Services/global.service';
+import { AppHelper } from 'src/@core/app.help';
 
 @Component({
   selector: 'app-book-detail',
@@ -134,7 +135,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   getAuthor(author) {
     localStorage.setItem('author', author);
-    this.router.navigate(['book/bookByAuthor']);
+    this.router.navigate([AppHelper.ROUTER_NAVIGATE_BOOK_BY_AUTHOR]);
   }
   getCategory(category) {
     localStorage.setItem('category', category);

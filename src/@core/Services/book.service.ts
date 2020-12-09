@@ -73,9 +73,7 @@ export class BookService {
         formdata.append('bookName', editBook.bookName);
         formdata.append('author', editBook.author);
         formdata.append('bookContent', editBook.bookContent);
-        formdata.append('category', editBook.category);
         formdata.append('releaseDate', editBook.releaseDate);
-        console.log('Formdata [bookName]: ', formdata.get('bookName'));
         // console.log('Formdata [image]: ', formdata.get('file'));
         // formdata.append('file', createbook.image);
 

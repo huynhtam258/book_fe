@@ -91,18 +91,21 @@ export class AuthorManagerComponent implements OnInit {
       this.bookService.postAuthor(form.value, this.selectedFile).subscribe((res) => {
           this.resetForm(form);
           this.getAuthors();
-          this.selectedFile = undefined;
+          // this.selectedFile = undefined;
       });
     } else {
       this.bookService.putAuthor(form.value, this.selectedFile).subscribe((res) => {
           this.resetForm(form);
           this.getAuthors();
-          this.selectedFile = undefined;
+          // this.selectedFile = undefined;
       });
     }
   }
-  onEdit(author: Author, editAuthor) {
+  onEdit(author: any, editAuthor) {
     this.bookService.selectedAuthor = author;
+    console.log(author)
+    this.bookService.selectedAuthor.category = author.category._id;
+    this.selectedFile = author.image;
     this.modalBook = this.modalService.open(editAuthor, { windowClass: 'modal-list modal-author' });
     this.modalBook.result.then((result) => {
       this.closeModalBook = `Closed with: ${result}`;
