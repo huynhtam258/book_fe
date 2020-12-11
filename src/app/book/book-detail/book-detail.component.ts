@@ -25,7 +25,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   public totalRate: any;
   public reviewComment: any;
   public reviewComments: ReviewComment[];
-  public p;
+  // public p;
   editorConfig = {
     editable: true, spellcheck: true, minHeight: '100px', translate: 'no', minwidth: '300px'
   };
@@ -83,10 +83,10 @@ export class BookDetailComponent implements OnInit, OnDestroy {
           this.getChildComment(result._id)
         });
       }
-      this.totalRate = this.reviewComments.map(function (a) {
-        return a['rate'];
-      });
-      this.averageRate = (Math.round((this.totalRate.reduce((acc, cur) => acc + cur, 0) / this.reviewComments.length) / 0.5) * 0.5);
+      // this.totalRate = this.reviewComments.map(function (a) {
+      //   return a['rate'];
+      // });
+      // this.averageRate = (Math.round((this.totalRate.reduce((acc, cur) => acc + cur, 0) / this.reviewComments.length) / 0.5) * 0.5);
     }, err => {
       console.log(err);
     });
@@ -167,5 +167,12 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.bookService.deleteComment(id).subscribe(
       (res) => { this.getComments(this.bookId) },
       (error) => { console.log(error) })
+  }
+
+  deleteChildComment(id, idComment){
+    this.bookService.deleteChildComment(id).subscribe(
+      (res) => { this.getChildComment(idComment) },
+      (error) => console.log(error)
+    )
   }
 }

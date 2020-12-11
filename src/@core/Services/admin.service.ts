@@ -77,53 +77,13 @@ export class AdminService {
 
   isLoggedIn() {
     return true;
-    // var adminPayload = this.getAdminPayload();
-    // if (adminPayload) {
-    //   return adminPayload.exp > Date.now() / 1000;
-    // } else {
-    //   return false;
-    // }
   }
-    // Kế đến ta sẽ tạo guard route private bằng cách sử thiết lập auth.guard.ts và auth.interceptor.ts trong @core
-  /* #endregion */
-  /* #region  */
-  // headers = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   // 'x-access-token': this.authService.getToken()
-  // });
 
-  // login(username: string, password: string): Observable<any> {
-  //   // const url = this.serverUrl + '/login';
-  //   const url = environment.apiBaseUrl + '/login';
-  //   return this.http.post(url, { username: username, password: password }).map(res => res as Admin).catch(err => {
-  //     return Observable.throw(err);
-  //   });
-  // }
+  changePassword(body){
+    return this.http.put(environment.apiBaseUrl + '/changePassword',body);
+  }
 
-  // register(name: string, userName: string, password: string): Observable<any> {
-  //   const url = this.serverUrl + '/user/register';
-  //   return this.http.post(url, { name: name, userName: userName, password: password })
-  //   .map(res => res as User)
-  //   .catch(err => {
-  //     return Observable.throw(err);
-  //   });
-  // }
-
-  // getCurrentUser(): Observable<Admin> {
-  //   const url = environment.apiBaseUrl + '/current-user';
-  //   return this.http.get(url, { headers: this.headers }).catch(err => {
-  //     return Observable.throw(err);
-  //   });
-  // }
-
-  // logOut(): Observable<Admin> {
-  //   console.log('from logout service');
-  //   const url = environment.apiBaseUrl + '/log-out';
-  //   return this.http.post(url, {}, { headers: this.headers })
-  //     .map(res => res as Admin)
-  //     .catch(err => {
-  //       return Observable.throw(err);
-  //     });
-  // }
-  /* #endregion */
+  updateProfile(body){
+    return this.http.put(environment.apiBaseUrl + '/updateProfile', body)
+  }
 }

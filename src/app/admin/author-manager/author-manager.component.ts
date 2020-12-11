@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { Category } from 'src/@core/models/category';
+import { UploadService } from 'src/@core/Services/upload-file.service';
 
 @Component({
   selector: 'app-author-manager',
@@ -40,7 +41,8 @@ export class AuthorManagerComponent implements OnInit {
     public adminService: AdminService,
     public router: Router,
     public modalService: NgbModal,
-    public datePipe: DatePipe) {
+    public datePipe: DatePipe,
+    private uploadService: UploadService) {
     this.date = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
   }
 
@@ -82,24 +84,27 @@ export class AuthorManagerComponent implements OnInit {
   }
   onSelectedFile(event) {
     this.selectedFile = event.target.files[0];
+    this.uploadService.onFileSelected(event);
   }
   onCancleFile() {
     this.selectedFile = undefined;
   }
   onSubmit(form: NgForm) {
-    if (form.value._id == null) {
-      this.bookService.postAuthor(form.value, this.selectedFile).subscribe((res) => {
-          this.resetForm(form);
-          this.getAuthors();
-          // this.selectedFile = undefined;
-      });
-    } else {
-      this.bookService.putAuthor(form.value, this.selectedFile).subscribe((res) => {
-          this.resetForm(form);
-          this.getAuthors();
-          // this.selectedFile = undefined;
-      });
-    }
+    this.uploadService.fb.subscribe(res=>{
+      if (form.value._id == null) {
+        this.bookService.postAuthor(form.value, res).subscribe((res) => {
+            this.resetForm(form);
+            this.getAuthors();
+            // this.selectedFile = undefined;
+        });
+      } else {
+        this.bookService.putAuthor(form.value, res).subscribe((res) => {
+            this.resetForm(form);
+            this.getAuthors();
+            // this.selectedFile = undefined;
+        });
+      }
+    })
   }
   onEdit(author: any, editAuthor) {
     this.bookService.selectedAuthor = author;

@@ -12,11 +12,18 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from 'src/@core/auth/auth.guard';
 import { AuthInterceptor } from 'src/@core/auth/auth.interceptor';
 import { LogoComponent } from './shared-component/logo/logo.component';
-import { AngularFireModule } from '@angular/fire/firebase.app.module';
+import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+// import { AngularFireStorageModule } from '@angular/fire/storage';
+import {
+  AngularFireStorageModule,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+  StorageBucket
+} from "@angular/fire/storage";
 
 import { environment } from 'src/environments/environment';
+// import { ChangePasswordComponent } from './change-password/change-password.component';
 @NgModule({
   declarations: [LogoComponent],
   imports: [
@@ -25,8 +32,8 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     RouterModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
     // AngularFireDatabaseModule
     // ToastrModule.forRoot({
     //   timeOut: 2000,

@@ -98,8 +98,9 @@
         <p style="font-size: 12px;font-style: italic;">Date: {{item.date}}</p>
       </div>
       <div>
-        <div *ngFor='let content of listChildComment[item._id]'>
-          <span *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong> {{content.contentChild}}</span>
+        <div style="display: flex ; border-bottom: 1px solid;" *ngFor='let content of listChildComment[item._id]'>
+          <span class="col-9" *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong> {{content.contentChild}}</span>
+          <span *ngIf="idUser == content.id_user" (click)="deleteChildComment(content._id, content.id_comment)"class="col-2">Xoá</span>
         </div>
         <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button (click)="sendComment(item)">Gửi bình luận</button></div>
       </div>

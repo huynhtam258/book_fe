@@ -147,7 +147,7 @@ export class BookService {
         return this.http.get(environment.apiBaseUrl + '/getauthor');
     }
 
-    postAuthor(createAuthor: Author, file: File): Observable<HttpEvent<{}>> {
+    postAuthor(createAuthor: Author, file: any): Observable<HttpEvent<{}>> {
         console.log(createAuthor);
         const formdata: FormData = new FormData();
         console.log(file);
@@ -166,7 +166,7 @@ export class BookService {
         return this.http.request(req);
     }
 
-    putAuthor(editAuthor: Author, file: File): Observable<HttpEvent<{}>> {
+    putAuthor(editAuthor: Author, file: any): Observable<HttpEvent<{}>> {
         const formdata: FormData = new FormData();
         console.log(file);
         formdata.append('file', file);
@@ -197,6 +197,10 @@ export class BookService {
 
     getChildComment(id){
         return this.http.get(environment.apiBaseUrl + '/getchildcmt/' + id);
+    }
+
+    deleteChildComment(id){
+        return this.http.delete(environment.apiBaseUrl + '/deleteChildComment/' + id);
     }
 
 }
