@@ -24,7 +24,7 @@ export class AuthorManagerComponent implements OnInit {
   public date;
   public p;
   public searchAuthor;
-  public selectedFile: File;
+  public selectedFile: any;
   public category: Category;
   public categories: Category[];
   public selectedCategory: Category;
@@ -43,7 +43,7 @@ export class AuthorManagerComponent implements OnInit {
     public modalService: NgbModal,
     public datePipe: DatePipe,
     private uploadService: UploadService) {
-    this.date = this.datePipe.transform(new Date(), 'dd/MM/yyyy');
+    
   }
 
   ngOnInit() {
@@ -83,33 +83,33 @@ export class AuthorManagerComponent implements OnInit {
     });
   }
   onSelectedFile(event) {
-    this.selectedFile = event.target.files[0];
+    // this.selectedFile = event.target.files[0];
     this.uploadService.onFileSelected(event);
+    this.uploadService.fb.subscribe(res => this.selectedFile = res);
+
   }
   onCancleFile() {
     this.selectedFile = undefined;
   }
-  onSubmit(form: NgForm,a) {
-    this.uploadService.fb.subscribe(res=>{
-      if (form.value._id == null) {
-        this.bookService.postAuthor(form.value, res).subscribe((res) => {
-            // this.resetForm(form);
-            this.getAuthors();
-            // this.selectedFile = undefined;
-        });
-      } else {
-        this.bookService.putAuthor(form.value, res).subscribe((res) => {
-            // this.resetForm(form);
-            this.getAuthors();
-            // this.selectedFile = undefined;
-        });
-      }
-    })
+  onSubmit(form: NgForm) {
+    this.date = new Date(this.date)
+    if (form.value._id == null) {
+      this.bookService.postAuthor(form.value, this.selectedFile).subscribe((res) => {
+        this.getAuthors();
+      });
+    } else {
+      this.bookService.putAuthor(form.value, this.selectedFile).subscribe((res) => {
+        this.getAuthors();
+      });
+    }
     this.resetForm(form);
   }
   onEdit(author: any, editAuthor) {
-    this.bookService.selectedAuthor = author;
     console.log(author)
+    this.bookService.selectedAuthor = author;
+    this.bookService.selectedAuthor.category = author.category
+    this.date = author.birthDay;
+    this.date = JSON.stringify(this.date).split('T')[0];
     this.bookService.selectedAuthor.category = author.category._id;
     this.selectedFile = author.image;
     this.modalBook = this.modalService.open(editAuthor, { windowClass: 'modal-list modal-author' });
@@ -120,15 +120,12 @@ export class AuthorManagerComponent implements OnInit {
     });
   }
   onDelete(_id: String, form: NgForm) {
-    console.log('a')
-    this.bookService.deleteAuthor(_id).subscribe((res) => {
-      console.log(res)
-      this.getAuthors();
-      this.resetForm(form);
-    });
-    // if (confirm('Are you sure to delete this?') === true) {
-      
-    // }
+    if (confirm('Are you sure to delete this?') === true) {
+      this.bookService.deleteAuthor(_id).subscribe((res: any) => {
+        alert(res.message)
+        this.getAuthors();
+      });
+    }
   }
 
   getCategory() {
@@ -147,6 +144,20 @@ export class AuthorManagerComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  findAuthor(){
+    if(this.searchAuthor.length > 2 ){
+      this.bookService.findAuthor(this.searchAuthor.toUpperCase()).subscribe((res: any) => {
+        if(res){
+          this.authors = []
+          this.authors.push(res.value);
+        }
+      })
+    } else if(this.searchAuthor.length == 0){
+      this.getAuthors();
+    }
+    
   }
 
 }

@@ -97,7 +97,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     if (form.value.bookId !== '' && form.valid) {
       let data = { nameReviwer: localStorage.getItem('id'), ...form.value, childReviewer }
       this.bookService.postComment(data).subscribe((res) => {
-        form.reset();
+        // form.reset();
         this.resetForm();
         this.getComments(this.bookId);
       });
@@ -146,7 +146,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     let id_user = localStorage.getItem('id');
     let contentChild = this.dataContentChild[data._id];
     let id_comment = data._id
-    this.bookService.sendCommentChild({ id_comment, contentChild, id_user, date: '' })
+    this.bookService.sendCommentChild({ id_comment, contentChild, id_user, date: '2015-03-25T00:00:00.000Z' })
       .subscribe(
         (res) => {
           this.getChildComment(id_comment);
@@ -165,8 +165,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   deleteComment(id) {
     this.bookService.deleteComment(id).subscribe(
-      (res) => { this.getComments(this.bookId) },
+      (res) => {  this.getComments(this.bookId)},
       (error) => { console.log(error) })
+      
   }
 
   deleteChildComment(id, idComment){

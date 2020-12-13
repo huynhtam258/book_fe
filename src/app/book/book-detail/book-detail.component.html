@@ -98,15 +98,15 @@
         <p style="font-size: 12px;font-style: italic;">Date: {{item.date}}</p>
       </div>
       <div>
-        <div style="display: flex ; border-bottom: 1px solid;" *ngFor='let content of listChildComment[item._id]'>
-          <span class="col-9" *ngIf='content.id_comment == item._id'><strong>{{content?.nameReviwer}}</strong> {{content.contentChild}}</span>
-          <span *ngIf="idUser == content.id_user" (click)="deleteChildComment(content._id, content.id_comment)"class="col-2">Xoá</span>
+        <div style="display: flex ;" *ngFor='let content of listChildComment[item._id]'>
+          <span class="col-9" *ngIf='content.id_comment == item._id'><strong>{{content?.id_user.firstname + ' ' + content?.id_user.lastname + ': '}}</strong> {{content.contentChild}}</span>
+          <!-- <span *ngIf="idUser == content.id_user" (click)="deleteChildComment(content._id, content.id_comment)"class="col-2">Xoá</span> -->
         </div>
         <div><input [(ngModel)]="dataContentChild[item._id]" type="text" name="" id="{{item._id}}"> <button (click)="sendComment(item)">Gửi bình luận</button></div>
       </div>
       
     </div>
-    <div (click)="deleteComment(item._id)" *ngIf="item.nameReviwer?._id == user._id">Xoá bình luận</div>
+    <!-- <div (click)="deleteComment(item._id)" *ngIf="item.nameReviwer?._id == user._id">Xoá bình luận</div> -->
     
   </div>
   <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->

@@ -96,7 +96,7 @@ export class BookService {
                 contentcomment: reviewComment.contentcomment,
                 bookId: reviewComment.bookId,
                 rate: reviewComment.rate,
-                date: reviewComment.date,
+                date: new Date,
                 childReviewer: reviewComment.childReviewer
             },
             { headers: headers }).catch(err => {
@@ -139,7 +139,7 @@ export class BookService {
         return this.http.get(environment.apiBaseUrl + '/getauthor');
     }
 
-    postAuthor(createAuthor: Author, file: any): Observable<HttpEvent<{}>> {
+    postAuthor(createAuthor: any, file: any): Observable<HttpEvent<{}>> {
         console.log(createAuthor);
         const formdata: FormData = new FormData();
         console.log(file);
@@ -148,7 +148,7 @@ export class BookService {
         formdata.append('quote', createAuthor.quote);
         formdata.append('interviewContent', createAuthor.interviewContent);
         formdata.append('category', createAuthor.category);
-        formdata.append('releaseDate', createAuthor.releaseDate);
+        formdata.append('birthDay', createAuthor.date);
         console.log('Formdata [authorName]: ', formdata.get('authorName'));
 
         const req = new HttpRequest('POST', environment.apiBaseUrl + '/createAuthor', formdata, {
@@ -158,7 +158,7 @@ export class BookService {
         return this.http.request(req);
     }
 
-    putAuthor(editAuthor: Author, file: any): Observable<HttpEvent<{}>> {
+    putAuthor(editAuthor: any, file: any): Observable<HttpEvent<{}>> {
         const formdata: FormData = new FormData();
         console.log(file);
         formdata.append('file', file);
@@ -166,7 +166,7 @@ export class BookService {
         formdata.append('quote', editAuthor.quote);
         formdata.append('interviewContent', editAuthor.interviewContent);
         formdata.append('category', editAuthor.category);
-        formdata.append('releaseDate', editAuthor.releaseDate);
+        formdata.append('birthDay', editAuthor.date);
         const req = new HttpRequest('PUT', environment.apiBaseUrl + `/editAuthor/${editAuthor._id}`, formdata, {
             reportProgress: true,
             responseType: 'text'
@@ -181,6 +181,10 @@ export class BookService {
 
     deleteAuthor(_id: String) {
         return this.http.delete(environment.apiBaseUrl + `/deleteAuthor/${_id}`);
+    }
+
+    sendComment(body){
+        return this.http.post(environment.apiBaseUrl + `/childcomment/create`,body);
     }
 
     sendCommentChild(body){

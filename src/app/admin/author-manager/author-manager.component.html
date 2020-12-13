@@ -9,12 +9,13 @@
       <div class="search row">
         <i class="fas fa-search"></i>
         <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchAuthor" 
+        (keyup)="findAuthor()"
         autocomplete="off" placeholder="Tìm kiếm">
       </div>
       <button class="btn btn-primary blue" (click)="onCreate(editAuthor)">Tạo mới tác giả</button>
     </div>
   </div>
-  <div class="interviewContent col-md-6 col-12" *ngFor="let item of authors | filter:searchAuthor | paginate: { itemsPerPage: 6, currentPage: p };">
+  <div class="interviewContent col-md-6 col-12" *ngFor="let item of authors">
     <img class="imgAuthor" src='{{item.image}}'>
     <div class="authorInfo">
       <div class="authorText">
@@ -41,8 +42,8 @@
     <form #authorForm="ngForm" (ngSubmit)="onSubmit(authorForm, d('Cross click'))">
       <input readonly type="text" name="_id" #_id="ngModel" [(ngModel)]="bookService.selectedAuthor._id"
         style="display: none;">
-      <input readonly type="text" name="releaseDate" #releaseDate="ngModel"
-        [(ngModel)]="bookService.selectedAuthor.releaseDate" style="display: none;">
+      <!-- <input readonly type="text" name="releaseDate" #releaseDate="ngModel"
+        [(ngModel)]="bookService.selectedAuthor.releaseDate" style="display: none;"> -->
       <div class="row">
         <input type="text" name="authorName" #authorName="ngModel" [(ngModel)]="bookService.selectedAuthor.authorName" required>
         <span class="highlight"></span>
@@ -56,6 +57,15 @@
         <span class="bar"></span>
         <label>Quote:</label>
       </div>
+
+      
+      <div class="row">
+        <input type="text" name="date" #quote="ngModel" [(ngModel)]="date">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Birth Day:</label>
+      </div>
+      <div class="row" style="color: #999;">Ví dụ ngày sinh: 2015-03-25</div>
 
       <div class="row">
         <div>

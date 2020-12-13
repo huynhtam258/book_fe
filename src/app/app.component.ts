@@ -19,17 +19,19 @@ export class AppComponent {
     private gb: GlobalService,
     private router: Router,
     private uploadService: UploadService) {
-    // this.getAdmin();
+    this.getAdmin();
   }
   getAdmin() {
-    // this.adminService.getAdmin(localStorage.getItem('id')).subscribe((res: any) => {
-    //   if (res.role == 'admin') {
-    //     this.router.navigate(['admin'])
-    //   }
-    //   this.gb.handler.next(res);
-    // }, err => {
-    //   console.log(err);
-    // });
+    this.adminService.getAdmin(localStorage.getItem('id')).subscribe((res: any) => {
+      if (res.role == 'admin') {
+        this.router.navigate(['admin'])
+      }
+      this.gb.handler.next(res);
+      console.log(res);
+      
+    }, err => {
+      console.log(err);
+    });
   }
   
 }
