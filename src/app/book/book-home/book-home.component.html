@@ -3,13 +3,14 @@
     <div class="search row">
         <i class="fas fa-search"></i>
         <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchBook" 
+        (keyup)="findBook()"
         autocomplete="off" placeholder="Tìm kiếm">
     </div>
 </div>
 <div class="row bookHome" >
     <app-book-item
     class="col-md-4 col-12" 
-    *ngFor="let item of books | filter:searchBook | paginate: { itemsPerPage: 9, currentPage: p };"
+    *ngFor="let item of books"
     [bookinp]='item'
 ></app-book-item>
 </div>

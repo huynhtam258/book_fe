@@ -8,16 +8,23 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminService } from 'src/@core/Services/admin.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ChangeInfoComponent } from '../change-info/change-info.component';
 
 const routes: Routes = [
     { path: '', component: AuthComponent, },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'change-password', component: ChangePasswordComponent}
+    { path: 'change-password', component: ChangePasswordComponent},
+    { path: 'change-info', component: ChangeInfoComponent}
 ];
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent, RegisterComponent, ChangePasswordComponent],
+  declarations: [
+    AuthComponent, 
+    LoginComponent, 
+    RegisterComponent, 
+    ChangePasswordComponent,
+    ChangeInfoComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -27,21 +34,3 @@ const routes: Routes = [
   providers: [AdminService],
 })
 export class AuthModule { }
-
-// import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { HttpClientModule } from '@angular/common/http';
-// import { AdminService } from 'src/@core/Services/admin.service';
-
-// import { AuthRoutingModule } from './auth-routing.module';
-
-// @NgModule({
-//   declarations: [],
-//   imports: [
-//     CommonModule,
-//     HttpClientModule,
-//     AuthRoutingModule,
-//   ],
-//   providers: [AdminService],
-// })
-// export class AuthModule { }

@@ -104,7 +104,7 @@ export class AdminHeaderComponent implements OnInit {
   }
   logOutAdmin() {
     this.adminService.deleteToken();
-    this.router.navigate([AppHelper.ROUTER_NAVIGATE_LOGIN]);
+    this.router.navigate([AppHelper.ROUTER_NAVIGATE_PAGE]);
   }
   
   private getDismissReason(reason: any): string {

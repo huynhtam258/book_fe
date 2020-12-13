@@ -23,9 +23,10 @@ import {
 } from "@angular/fire/storage";
 
 import { environment } from 'src/environments/environment';
+// import { ChangeInfoComponent } from './change-info/change-info.component';
 // import { ChangePasswordComponent } from './change-password/change-password.component';
 @NgModule({
-  declarations: [LogoComponent],
+  declarations: [LogoComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,

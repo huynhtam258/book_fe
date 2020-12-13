@@ -3,13 +3,14 @@
     <div class="search row">
         <i class="fas fa-search"></i>
         <input class="form-control" type="text" name="searchBook" [(ngModel)]="searchAuthor" 
+        (keyup)="findAuthor()"
         autocomplete="off" placeholder="Start searching">
     </div>
 </div>
 <div class="row bookHome" >
     <app-author-item
     class="col-md-4 col-12" 
-    *ngFor="let item of authors | filter:searchAuthor | paginate: { itemsPerPage: 9, currentPage: p };"
+    *ngFor="let item of authors "
     [authorinp]='item'
 ></app-author-item>
 </div>

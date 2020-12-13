@@ -1,0 +1,17 @@
+<body>
+  <section class="formLogin">
+    <h4>Đổi thông tin cá nhân</h4>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)" class="form-signin">
+      <div class="form-group row rowInput" >
+        <input type="password" class="form-control col-12 row1Input" id="iputid" name="new_passowrd" #firstname="ngModel" [(ngModel)]="model.firstname" aria-describedby="inputid_help" placeholder="First name(*)" required autocomplete="off">
+      </div>
+      <div class="form-group row rowInput" >
+        <input type="password" class="form-control col-12 row1Input" id="iputid" name="new_passowrd" #lastname="ngModel" [(ngModel)]="model.lastname" aria-describedby="inputid_help" placeholder="Last name(*)" required autocomplete="off">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input " id="exampleCheck1">
+      </div>
+      <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary orange" id="btn-login">Xác nhận</button>
+    </form>
+  </section>
+</body>

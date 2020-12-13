@@ -27,4 +27,19 @@ export class AuthorHomeComponent implements OnInit {
       console.log(err);
     });
   }
+
+  findAuthor(){
+    if(this.searchAuthor.length > 2 ){
+    // this.authors = []
+      this.bookService.findAuthor(this.searchAuthor.toUpperCase()).subscribe((res: any) => {
+        if(res){
+          this.authors = []
+          this.authors.push(res.value);
+        }
+      })
+    } else if(this.searchAuthor.length == 0){
+      this.getAuthors();
+    }
+    
+  }
 }

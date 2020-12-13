@@ -27,4 +27,19 @@ export class BookHomeComponent implements OnInit {
     });
   }
 
+  findBook(){
+    if(this.searchBook.length > 2){
+      this.books = [];
+      this.bookService.findBook(this.searchBook.toUpperCase())
+      .subscribe((res:any) => {
+        if(res){
+          this.books.push(res.value);
+        }
+      })
+    }
+    else if(this.searchBook.length == 0){
+      this.getBooks();
+    }
+  }
+
 }

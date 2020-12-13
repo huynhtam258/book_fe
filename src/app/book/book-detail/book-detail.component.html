@@ -17,16 +17,16 @@
         <a (click)="getCategory(book.category)" class="pInfoBook col-6 colRight" id="aCategory" style="text-align:left">{{book.category.categoryName}}</a>
       </div> -->
 
-      <div class="row rowInfo">
+      <!-- <div class="row rowInfo">
         <span class="pInfoBook col-6 colLeft" style="text-align:right">Average Star:</span>
         <p *ngIf="averageRate" class="pInfoBook col-6 colRight"  style="text-align:left">{{averageRate}}</p>
         <p *ngIf="!averageRate" class="pInfoBook col-6 colRight"  style="text-align:left">0/5</p>
       </div>
-      
-      <div class="row rowInfo">
+       -->
+      <!-- <div class="row rowInfo">
           <span class="pInfoBook col-6 colLeft" style="text-align:right">Lasted review:</span>
           <p class="pInfoBook col-6 colRight" style="text-align:left">{{book.releaseDate}}</p>
-      </div>
+      </div> -->
     </div>
     <div class="content" [innerHTML]="book.bookContent" style="overflow-y:scroll;overflow-x: unset;"></div>
   </div>
@@ -75,7 +75,7 @@
 </section>
 
 <section class="commentShow">
-  <div class="comment row" *ngFor="let item of reviewComments | paginate: { itemsPerPage: 3, currentPage: p };">
+  <div class="comment row" *ngFor="let item of reviewComments">
     <div class="avatarComment col-lg-1 col-sm-4">
       <div class="row" style="margin-bottom: 0;" id="divImage">
         <img src="assets/guest_logo.jpg">
@@ -109,5 +109,5 @@
     <div (click)="deleteComment(item._id)" *ngIf="item.nameReviwer?._id == user._id">Xoá bình luận</div>
     
   </div>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 </section>

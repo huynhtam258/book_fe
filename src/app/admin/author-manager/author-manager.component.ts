@@ -89,22 +89,23 @@ export class AuthorManagerComponent implements OnInit {
   onCancleFile() {
     this.selectedFile = undefined;
   }
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm,a) {
     this.uploadService.fb.subscribe(res=>{
       if (form.value._id == null) {
         this.bookService.postAuthor(form.value, res).subscribe((res) => {
-            this.resetForm(form);
+            // this.resetForm(form);
             this.getAuthors();
             // this.selectedFile = undefined;
         });
       } else {
         this.bookService.putAuthor(form.value, res).subscribe((res) => {
-            this.resetForm(form);
+            // this.resetForm(form);
             this.getAuthors();
             // this.selectedFile = undefined;
         });
       }
     })
+    this.resetForm(form);
   }
   onEdit(author: any, editAuthor) {
     this.bookService.selectedAuthor = author;

@@ -9,6 +9,7 @@ export class AppHelper {
     public static ROUTER_NAVIGATE_ADMIN = '/admin';
     public static ROUTER_NAVIGATE_AUTOR_MANAGER = '/admin/author_manager';
 
+    public static ROUTER_NAVIGATE_PAGE= '/'
     public static ROUTER_NAVIGATE_BOOK = '/book';
     public static ROUTER_NAVIGATE_BOOK_DETAIL = '/book/detail';
     public static ROUTER_NAVIGATE_BOOK_BY_AUTHOR = '/book/bookByAuthor';

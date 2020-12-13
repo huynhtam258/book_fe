@@ -51,10 +51,6 @@ export class BookService {
         formdata.append('bookContent', createbook.bookContent);
         formdata.append('category', createbook.category);
         formdata.append('releaseDate', createbook.releaseDate);
-        console.log('Formdata [bookName]: ', formdata.get('bookName'));
-        // console.log('Formdata [image]: ', formdata.get('file'));
-        // formdata.append('file', createbook.image);
-
         const req = new HttpRequest('POST', environment.apiBaseUrl + '/create', formdata, {
             reportProgress: true,
             responseType: 'text'
@@ -62,10 +58,6 @@ export class BookService {
         return this.http.request(req);
     }
 
-    // putBook(book: Book) {
-    //     // return this.http.put(environment.apiBaseUrl + `/edit/${book._id}`, book);
-    //     return this.http.post(environment.apiBaseUrl + `/edit/${book._id}`, book);
-    // }
     putBook(editBook: Book, file: File): Observable<HttpEvent<{}>> {
         const formdata: FormData = new FormData();
         console.log(file);
@@ -203,4 +195,12 @@ export class BookService {
         return this.http.delete(environment.apiBaseUrl + '/deleteChildComment/' + id);
     }
 
+
+    findBook(data){
+        return this.http.get(environment.apiBaseUrl + '/findBook/'+ data);
+    }
+
+    findAuthor(data){
+        return this.http.get(environment.apiBaseUrl + '/findAuthor/'+ data);
+    }
 }
